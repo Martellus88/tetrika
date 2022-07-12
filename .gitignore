@@ -1,0 +1,7 @@
+*.py[cod]
+
+# Virtual environment
+venv
+
+# Pycharm data
+.idea
