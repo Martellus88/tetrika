@@ -25,9 +25,9 @@ def appearance(intervals):
     pupil_time_set = create_time_set(pupil)
     tutor_time_set = create_time_set(tutor)
 
-    result = lesson_time_set & tutor_time_set & pupil_time_set
+    result = len(lesson_time_set & tutor_time_set & pupil_time_set)
 
-    return len(result)
+    return result
 
 
 def create_time_set(sequence):
@@ -36,6 +36,7 @@ def create_time_set(sequence):
     for timestamp in sequence_time:
         sequence_time_set |= set(range(timestamp[0], timestamp[1]))
     return sequence_time_set
+
 
 tests = [
     {'data': {'lesson': [1594663200, 1594666800],

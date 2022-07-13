@@ -34,6 +34,10 @@ def task():
     while flag:
         try:
             res = session.get(url, params=params)
+        except requests.exceptions.RequestException as e:
+            print(e)
+            flag = False
+        else:
             data = res.json()
 
             for animal in data['query']['categorymembers']:
@@ -44,9 +48,6 @@ def task():
                 params['cmcontinue'] = data.get('continue').get('cmcontinue')
             else:
                 flag = False
-        except requests.exceptions.RequestException as e:
-            print(e)
-            flag = False
 
     result = dict(sorted(result.items(), key=lambda x: x[0]))
 
@@ -60,8 +61,5 @@ def write_to_file(data):
 
 
 def print_result(data):
-    for _, key in enumerate(data):
+    for key in data:
         print(f'{key}: {len(data[key])}')
-
-
-task()

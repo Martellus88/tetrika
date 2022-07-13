@@ -12,7 +12,7 @@ def task(sequence):
     right = len(sequence)
     while (right - left) > 1:
         middle = (left + right) // 2
-        if sequence[middle] == '0':
+        if sequence[middle] == str(0):
             right = middle
         else:
             left = middle
